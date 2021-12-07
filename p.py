@@ -1,30 +1,54 @@
 
 def main():
+    #file1=input("File 1 -- ")
+    #file2=input("File 2 -- ")
 
-    f = open("demofile.txt", "r")
-    x = f.read()
-    f2 = open("demofile2.txt", "r")
-    y=f2.read()
+    try:
+        f = open("demofile.txt", "r")
+    except IOError:
+        print("File 1 not accessible")
+        return
+    x = f.read()                        # x contains the strings from first file
 
-    x = x.replace('?', '. ')
-    y = y.replace('?', '. ')
-    x = x.replace('!', '. ')
-    y = y.replace('!', '. ')
-    sc = x.split(".")
-    x = x.replace('\n', ' ')
-    y = y.replace('\n', ' ')
-    x = x.replace('  ', '')
-    y = y.replace('  ', '')
+    try:
+        f2 = open("demofile2.txt", "r")
+    except IOError:
+        print("File 2 not accessible")
+        return
+    y = f2.read()                         # y contains the strings from first file
 
-    sentence1 = x.split(".")
+    x = dots(x)
+    y = dots(y)
+
+    sentence = x.split(".")
     sentence2 = y.split(".")
-    sentence1[len(sentence1)-1] = '1'
-    sentence2[len(sentence2)-1] = '2'
-    count = 0
-    for i in sentence1:
+
+    check(sentence, sentence2)
+
+
+def dots(x):
+    x = x.replace('?', '.')
+    x = x.replace('!', '.')
+    x = x.replace('\n', '')
+    return x
+
+
+            # Check if there are the same sentences without spaces
+def check(sentence, sentence2):
+    for i in sentence:
         for j in sentence2:
-            if i==j:
-                print(sc[count])
-        count=count+1
+            if checkWords(i, j)==1:
+                print(i)
+                print(j)
+
+            # Check the words
+def checkWords(sentence, sentence2):
+    while '  ' in sentence:
+        sentence = sentence.replace('  ', ' ')
+    while '  ' in sentence2:
+        sentence2 = sentence2.replace('  ', ' ')
+    if sentence == sentence2:
+        return 1
+    return 0
 
 main()
