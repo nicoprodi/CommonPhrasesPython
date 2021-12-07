@@ -1,17 +1,17 @@
 
 def main():
-    #file1=input("File 1 -- ")
-    #file2=input("File 2 -- ")
+    file1=input("File 1 -- ")
+    file2=input("File 2 -- ")
 
     try:
-        f = open("demofile.txt", "r")
+        f = open(file1, "r")
     except IOError:
         print("File 1 not accessible")
         return
     x = f.read()                        # x contains the strings from first file
 
     try:
-        f2 = open("demofile2.txt", "r")
+        f2 = open(file2, "r")
     except IOError:
         print("File 2 not accessible")
         return
