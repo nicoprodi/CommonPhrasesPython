@@ -24,7 +24,7 @@ def checkWords(sentence, sentence2):
         return 1
     return 0
 
-def main2():
+def main():
     file1=input("File 1 -- ")
     file2=input("File 2 -- ")
 
